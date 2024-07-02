@@ -4,6 +4,18 @@
 
 [![Docker][docker-shield]][docker-url]
 
+### Run the container on localhost:3000
+
+```
+docker run -d -p 3000:3000 vishnusureshperumbavoor2/node-k8s-app
+```
+
+### Pull the image from Docker Hub
+
+```
+docker pull vishnusureshperumbavoor2/node-k8s-app
+```
+
 ## Architecture
 
 ### Microservices
@@ -41,6 +53,7 @@ Kubernetes allows to orchestrate the containerized applications across a cluster
 Makes it easy to scale applications horizontally by adding or removing container instances based on demand.
 
 ## Prerequisites
+
 1. NodeJS
 2. Docker
 3. minikube (to use kubernetes cluster locally)
@@ -60,7 +73,7 @@ Set up Docker client to use the Docker daemon running inside the Minikube VM.
 eval $(minikube docker-env)
 ```
 
-## Steps
+## NodeJS + Docker + K8s tutorials
 
 ### Step 1: Create a Simple Node.js Application
 
@@ -122,7 +135,7 @@ Build a docker image from the docker file (Dockerization)
 docker build -t node-k8s-app .
 ```
 
-Run the image in a Docker container at [localhost:3000](https://localhost:3000) (Containerization)
+Run the image in a Docker container at localhost:3000 (Containerization)
 
 ```sh
 docker run -p 3000:3000 node-k8s-app
@@ -190,8 +203,6 @@ docker tag node-k8s-app vishnusureshperumbavoor2/node-k8s-app
 docker push vishnusureshperumbavoor2/node-k8s-app
 ```
 
-### To see the deployed version locally
-
 Update the image tag in deployment.yaml
 
 ```sh
@@ -203,19 +214,6 @@ Apply the changes to the kubernetes cluster
 ```sh
 kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
-```
-
-#### Run the container on [localhost:3000](http://localhost:3000/)
-
-```sh
-docker run -d -p 3000:3000 vishnusureshperumbavoor2/node-k8s-app
-```
-
-### Pull the image from Docker Hub
-
-```sh
-docker pull vishnusureshperumbavoor2/node-k8s-app
-docker run -d -p 3000:3000 vishnusureshperumbavoor2/node-k8s-app
 ```
 
 ## Step 5.2: Deploy to local Kubernetes cluster
@@ -249,7 +247,7 @@ Run the service on [http://192.168.49.2:30278/](http://192.168.49.2:30278/)
 minikube service node-k8s-app:v2
 ```
 
-It indicates that the service node-k8s-app is accessible at the IP address 192.168.49.2 and port 30278.
+It indicates that the service node-k8s-app is accessible at the IP address 192.168.49.2 and port 30278
 
 ### View deployments, pods and services
 
