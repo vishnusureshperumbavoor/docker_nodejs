@@ -4,13 +4,25 @@
 
 [![Docker][docker-shield]][docker-url]
 
-### Run the container on localhost:3000
+Run the container on localhost:3000
 
 ```
 docker run -d -p 3000:3000 vishnusureshperumbavoor2/node-k8s-app
 ```
 
-### Pull the image from Docker Hub
+Get the container IDs
+
+```
+docker ps
+```
+
+Kill the running container
+
+```
+docket stop <container_id>
+```
+
+Pull the image from Docker Hub
 
 ```
 docker pull vishnusureshperumbavoor2/node-k8s-app
@@ -192,7 +204,7 @@ spec:
       targetPort: 3000
 ```
 
-## Step 5.1: Deploy to Docker hub
+## Deploy to Docker hub
 
 You can also use AWS ECR or GCP container.
 
@@ -216,7 +228,27 @@ kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
 ```
 
-## Step 5.2: Deploy to local Kubernetes cluster
+## Deploy to GitHub Packages
+
+Login to github container registery
+
+```
+docker login --username <github_username> --password <github_token> ghcr.io
+```
+
+Build docker
+
+```
+docker build . -t ghcr.io/<github_username>/<repo_name>:latest
+```
+
+Push the image
+
+```
+docker push ghcr.io/<github_username>/<repo_name>:latest
+```
+
+## Deploy to local Kubernetes cluster
 
 ```sh
 minikube start
@@ -267,13 +299,6 @@ docker search vishnusureshperumbavoor2
 
 ```sh
 docker images
-```
-
-### Kill currently running containers
-
-```sh
-docker ps
-docker stop <container_id>
 ```
 
 ## Contact
